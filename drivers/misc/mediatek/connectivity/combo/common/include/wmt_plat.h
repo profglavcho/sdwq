@@ -35,11 +35,11 @@
 #define CONSYS_EARLYSUSPEND_ENABLE 0
 #endif
 
-#if defined(MTK_MERGE_INTERFACE_SUPPORT) && (defined(MT6628) || defined(MT6630))
-#define MTK_WCN_CMB_MERGE_INTERFACE_SUPPORT 1
-#else
+//#if defined(MTK_MERGE_INTERFACE_SUPPORT) && (defined(MT6628) || defined(MT6630))
+//#define MTK_WCN_CMB_MERGE_INTERFACE_SUPPORT 1
+//#else
 #define MTK_WCN_CMB_MERGE_INTERFACE_SUPPORT 0
-#endif
+//#endif
 
 #if MTK_WCN_CMB_FOR_SDIO_1V_AUTOK
 #define WMT_FOR_SDIO_1V_AUTOK 1

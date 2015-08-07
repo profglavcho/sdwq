@@ -42,7 +42,7 @@
 #include <mach/mtk_rtc.h>
 #include <mach/mt_gpio.h>
 #include <cust_gpio_usage.h>
-#ifdef CONFIG_MTK_MT6306_SUPPORT
+#if 0
 #include <mach/dcl_sim_gpio.h>
 #endif
 
@@ -58,7 +58,7 @@
 #ifdef GPIO_COMBO_BGF_EINT_PIN
 #define CONFIG_EINT_DEVICE_TREE 1
 
-#if CONFIG_EINT_DEVICE_TREE 1
+#if CONFIG_EINT_DEVICE_TREE 
 #include <linux/of.h>
 #include <linux/of_irq.h>
 #include <linux/irqreturn.h>
@@ -85,7 +85,7 @@ static UINT32 bfg_irq = 0;
 ********************************************************************************
 */
 #ifdef GPIO_COMBO_BGF_EINT_PIN
-static VOID wmt_plat_bgf_eirq_cb(VOID);
+static irqreturn_t wmt_plat_bgf_eirq_cb(int irq, void *data);
 #endif
 static INT32 wmt_plat_ldo_ctrl(ENUM_PIN_STATE state);
 static INT32 wmt_plat_pmu_ctrl(ENUM_PIN_STATE state);
