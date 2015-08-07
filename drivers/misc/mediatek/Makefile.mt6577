@@ -1,0 +1,3 @@
+#$(call all-subdir-src-or-makefile)
+
+include $(srctree)/drivers/misc/mediatek/Makefile.custom

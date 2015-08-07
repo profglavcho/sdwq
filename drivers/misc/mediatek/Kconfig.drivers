@@ -79,12 +79,22 @@ config MTK_LDVT_PMIC_WRAP
 	---help---
 	  MediaTek PMIC_WRAP driver for LDVT
 
+config MTK_SC_DEBUG
+        bool "MediaTek SLPCTRL Debug Mode for LDVT"
+        default y
+	  
 endif
 
 # Accdet
 config MTK_ACCDET
 	bool "MediaTek Accessory Detection Support"
 	default n
+# Bluetooth Related TODO refine?
+config MTK_BT_NET_DEV # BT_NET_DEV
+        bool "Bluetooth network device (for DUN/PAN)"
+        ---help---
+          This is the virtual network driver for bluetooth DUN and PAN. It can be
+          used to forward ip packets to external network driver. Say Y or N.
 
 config CUSTOM_KERNEL_CHARGEPUMP
 	bool "backlight driver"
@@ -328,6 +338,12 @@ config MTK_FB_SUPPORT_ASSERTION_LAYER
 	  This enable support for AEE assertion layer.
 	  If you want to enable AEE assertion layer support, say Y here.
 	  If unsure, say N.
+config MTK_FB_EVB_USE_HVGA_LCM # FB_MT6516_EVB_USE_HVGA_LCM
+        bool "Use MagnaChip TA7601 HVGA LCM on EVB"
+        depends on FB_MT6516 && MT6516_EVB_BOARD
+        default n
+        ---help---
+          Use MagnaChip TA7601 HVGA LCM on EVB
 
 config MTK_DITHERING_SUPPORT
 	bool "MTK_DITHERING_SUPPORT"
@@ -753,6 +769,27 @@ config MTK_LEDS
 	  This selects the MediaTek(R) LEDs connected to MediaTek chips.
 	  If you want to use MediaTek(R) LEDs support, say Y or M here.
 	  If unsure, say N.
+config MTK_CPUFREQ
+        tristate "MediaTek CPUFreq Support"
+        depends on CPU_FREQ
+        default y
+        ---help---
+          Enable this option to support cpufreq function
+        
+# SGX Config
+config PVR_SGX_MT6577
+        tristate "PowerVR SGX support"
+        depends on ARCH_MT6577
+        default m
+        ---help---
+          Enable this option to build support for the PowerVR SGX 3D core.
+
+config PVR_SGX_MT6575
+        tristate "PowerVR SGX support"
+        depends on ARCH_MT6575
+        default m
+        ---help---
+          Enable this option to build support for the PowerVR SGX 3D core.
 
 # Memory Card
 config MTK_MMC
@@ -1239,6 +1276,11 @@ config MTK_TOUCHPANEL
 	  Say Y here if you have MediaTek MT6516 touch panel.
 	  If unsure, say N.
 
+#backlight driver
+config MTK_EXTBACKLIGHT # backlight driver
+        bool "Mediatek external backlight"
+        default n
+
 config MTK_S7020
          bool "S7020 for Mediatek package"
         default n
@@ -1382,6 +1424,11 @@ config KICK_SPM_WDT # SW WORKAROUND
 	default n
 	---help---
 	  SW workaround to kick SPM WDT instaed of RGU WDT
+config LOCAL_WDT # CONFIG_LOCAL_WDT
+        tristate "local WatchDog for multicore"
+        default y
+        ---help---
+        local WatchDog dog kicker is a module in the kernel for multicore        
 
 # Wireless
 menuconfig MT592X
@@ -1470,6 +1517,10 @@ config USB_MTK_HDRC_HCD
 
 config MTK_USB_UNIQUE_SERIAL
 	 tristate "MediaTek USB unique serial number"
+config MT6575T_FPGA
+         tristate "MT6575T FPGA support"         
+         depends on ARCH_MT6575T
+
 
 config MTK_USBFSH # USBFSH
 	bool "MediaTek USB fullspeed Host driver"
@@ -1478,6 +1529,22 @@ config MTK_USBFSH # USBFSH
 config MUSBFSH_PIO_ONLY
 	bool "Transfer mode of MediaTek USB fullspeed Host driver"
 	default n
+
+config MISC_VIA
+	bool "VIATEL MISC driver"
+	default n
+config MTK_DEVINFO_DRIVER # DEVINFO driver
+        tristate "DEVINFO Driver"
+        default m
+        help
+          This option enables devinfo device driver support
+	
+config MTK_DEVAPC_DRIVER # DEVAPC driver
+        tristate "DEVAPC Driver"
+        default m
+        help
+          This option enables devapc device driver support
+
 
 config MTK_MUSB_QMU_SUPPORT
 	bool "QMU Transfer mode of MediaTek MUSB"

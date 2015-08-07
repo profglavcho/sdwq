@@ -63,12 +63,23 @@ config MTK_KERNEL_MARKER
 	help
 	  Mark the user-defined points, such as systrace events in
 	  user space, to visualize via systrace html files
+	  
+config FUNCTION_DURATION_TRACER
+        bool "Kernel Function Duration Tracer"
+        depends on FUNCTION_GRAPH_TRACER
+        help
+          Enable the kernel to record function durations, with
+          filtering.  Can also be used in early startup.
+          See Documentation/trace/func-duration.txt
 
 config MT65XX_TRACER
 	bool "MT65XX Tracer"
 	select CONTEXT_SWITCH_TRACER
 	select GENERIC_TRACER
 	default n
+
+config GENERIC_TRACER
+        bool "Scheduler Switch Tracer"
 
 menu "MET"
 
@@ -101,6 +112,9 @@ config MTPROF_CPUTIME
 
 endmenu
 
+config MTPROF_APPLAUNCH
+    bool "applaunch time profiling"
+ 
 config MTPROF_IRQ_DURATION
 	bool "mt IRQ/ISR profiling"
 
@@ -126,7 +140,11 @@ config MTK_AEE_POWERKEY_HANG_DETECT
 config MTK_AEE_MRDUMP
 	tristate "Enable AEE RAMDUMP support"
 	default y
-
+	
+config MTK_AEE_KDUMP
+        tristate "Include memory Dump"
+        default y
+ 
 config ANDROID_VMEM
 	tristate "Virutally continuous memory allocator"
 	default y
@@ -171,6 +189,10 @@ config MTK_RAM_CONSOLE_DRAM_ADDR
 	default 0
 	depends on MTK_RAM_CONSOLE   
 
+config ANDROID_VMEM
+	tristate "Virutally continuous memory allocator"
+	default y
+	
 config PREEMPT_MONITOR
 	bool "mt preempt monitor"
 	default n

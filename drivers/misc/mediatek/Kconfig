@@ -179,6 +179,12 @@ config MTK_MEMCFG
 	default n
 	help
 
+config MTK_FAKE_CORE_COUNT
+	int "FAKE CORE COUNT NUMBER"
+	depends on SMP
+	range 0 32
+	default "0"
+	
 config MTK_DT_SUPPORT
 	bool "MTK_DT_SUPPORT"
 	default n

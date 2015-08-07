@@ -651,6 +651,33 @@ config ARCH_MT6572
 	help
 	  This enable support for MediaTek MT6572
 
+config ARCH_MT6575
+        bool "MediaTek MT6575"
+        select GENERIC_TIME
+        select GENERIC_CLOCKEVENTS
+        select ARCH_HAS_CPUFREQ
+        select ARM_AMBA
+        select CPU_V7
+        select ARM_GIC
+        select NEED_MACH_MEMORY_H
+        select MIGHT_HAVE_CACHE_L2X0
+        help
+          This enable support for MediaTek MT6575.
+
+config ARCH_MT6577
+        bool "MediaTek MT6577"
+        select GENERIC_TIME
+        select GENERIC_CLOCKEVENTS
+        select ARCH_HAS_CPUFREQ
+        select ARM_AMBA
+        select HAVE_SMP
+        select CPU_V7
+        select NEED_MACH_MEMORY_H
+        select MIGHT_HAVE_CACHE_L2X0
+        select ARM_GIC
+        help
+          This enable support for MediaTek MT6577.
+	  
 config ARCH_MT6595
 	bool "MediaTek MT6595"
 	select GENERIC_TIME
@@ -1203,6 +1230,106 @@ source "arch/arm/mach-msm/Kconfig"
 if ARCH_MT6572
 #source "arch/arm/mach-mt6572/Kconfig"
 endif
+if ARCH_MT6577
+
+menu "MT6577 Board Support Package"
+
+choice
+	bool "Board"
+
+config MT6577_ESL
+	bool "MT6577 ESL"
+	select ARM_GIC
+	help
+	  Select if you are using the ESL.
+
+config MT6577_FPGA
+	bool "MT6577 FPGA"
+	select ARM_GIC
+	help
+	  Select if you are using the FPGA board.
+
+config MT6577_EVB_BOARD
+	bool "MT6577 EVB BOARD"
+	select ARM_GIC
+	help
+	  Select if you are using an EVB board.
+
+config EAGLE77V1
+	bool "Eagle77v1 phone"
+	select ARM_GIC
+	help
+	  Select if you are using an Eagle75v1 phone.
+
+endchoice
+
+config MAX_DRAM_SIZE_SUPPORT
+	hex "The maximum size of the DRAM can be supported in the kernel"
+	default 0x10000000
+	depends on ARCH_MT6577
+	help
+		Define the maximum size of the kernel can be supported.
+	        If will modify the memory size if it size is smaller than 
+                the memory size passed by the boot loader to the MAX_DRAM_SIZE_SUPPORT.
+   		Notice that the maximum DRAM size is including the memory size
+	        reserved for the modem and the PMEM.
+
+endmenu
+
+endif # ARCH_MT6577
+
+if !ARCH_MT6577
+menu "MT6575 Board Support Package"
+
+choice
+        bool "Board"
+
+config MT6575_ESL
+        bool "MT6575 ESL"
+        select ARM_GIC
+        help
+          Select if you are using the ESL.
+
+config MT6575_FPGA
+        bool "MT6575 FPGA"
+        select ARM_GIC
+        help
+          Select if you are using the FPGA board.
+
+config MT6575_EVB_BOARD
+        bool "MT6575 EVB BOARD"
+        select ARM_GIC
+        help
+          Select if you are using an EVB board.
+
+config EAGLE75V1
+        bool "Eagle75v1 phone"
+        select ARM_GIC
+        help
+          Select if you are using an Eagle75v1 phone.
+
+config BIRD75V1
+        bool "Bird75v1 phone"
+        select ARM_GIC
+        help
+          Select if you are using an Eagle75v1 phone.
+
+endchoice
+
+config MAX_DRAM_SIZE_SUPPORT
+        hex "The maximum size of the DRAM can be supported in the kernel"
+        default 0x10000000
+        depends on ARCH_MT6575
+        help
+                Define the maximum size of the kernel can be supported.
+                If will modify the memory size if it size is smaller than
+                the memory size passed by the boot loader to the MAX_DRAM_SIZE_SUPPORT.
+                Notice that the maximum DRAM size is including the memory size
+                reserved for the modem and the PMEM.
+
+endmenu
+
+endif # !ARCH_MT6577
 
 if ARCH_MT6582
 #source "arch/arm/mach-mt6582/Kconfig"
