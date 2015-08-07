@@ -14,7 +14,7 @@ endif
 export DRVGEN_OUT
 
 DRVGEN_OUT_PATH := $(DRVGEN_OUT)/inc
-
+ifneq ($(MTK_PROJECT),diablo)
 DRVGEN_FILE_LIST := $(DRVGEN_OUT)/inc/cust_kpd.h \
 		    $(DRVGEN_OUT)/inc/cust_eint.h \
 		    $(DRVGEN_OUT)/inc/cust_gpio_boot.h \
@@ -132,4 +132,4 @@ $(DRVGEN_OUT)/inc/cust_eint_ext.h: $(DRVGEN_TOOL) $(DWS_FILE)
 $(DRVGEN_OUT)/cust_eint.dtsi: $(DRVGEN_TOOL) $(DWS_FILE)
 	@mkdir -p $(dir $@)
 	@$(DRVGEN_TOOL) $(DWS_FILE) $(DRVGEN_OUT) $(DRVGEN_OUT_PATH) eint_dtsi
-
+endif
