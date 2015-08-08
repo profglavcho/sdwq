@@ -1000,9 +1000,9 @@ BOOLEAN rsnPerformPolicySelection(IN P_ADAPTER_T prAdapter, IN P_BSS_DESC_T prBs
 		fgSuiteSupported = FALSE;
 
 		DBGLOG(RSN, TRACE,
-		       ("eEncStatus %d %d 0x%x\n", prAdapter->rWifiVar.rConnSettings.eEncStatus,
+		       ("eEncStatus %d %d 0x%x\n", (int)prAdapter->rWifiVar.rConnSettings.eEncStatus,(int)
 			prBssRsnInfo->u4PairwiseKeyCipherSuiteCount,
-			prBssRsnInfo->au4PairwiseKeyCipherSuite[0]));
+			(unsigned int)prBssRsnInfo->au4PairwiseKeyCipherSuite[0]));
 		/* Select pairwise/group ciphers */
 		switch (prAdapter->rWifiVar.rConnSettings.eEncStatus) {
 		case ENUM_ENCRYPTION3_ENABLED:
@@ -1101,7 +1101,7 @@ BOOLEAN rsnPerformPolicySelection(IN P_ADAPTER_T prAdapter, IN P_BSS_DESC_T prBs
 	if (!fgSuiteSupported) {
 		DBGLOG(RSN, TRACE,
 		       ("Failed to support selected pairwise/group cipher (0x%08lx/0x%08lx)\n",
-			u4PairwiseCipher, u4GroupCipher));
+			(long unsigned int)u4PairwiseCipher, (long unsigned int)u4GroupCipher));
 		return FALSE;
 	}
 
@@ -1511,7 +1511,7 @@ VOID rsnGenerateRSNIE(IN P_ADAPTER_T prAdapter, IN P_MSDU_INFO_T prMsduInfo)
 				cp += 2;
 				DBGLOG(RSN, TRACE,
 				       ("BSSID " MACSTR " ind=%d\n", MAC2STR(prStaRec->aucMacAddr),
-					u4Entry));
+					(int)u4Entry));
 				DBGLOG(RSN, TRACE,
 				       ("use PMKID " MACSTR "\n",
 					MAC2STR(prAdapter->rWifiVar.rAisSpecificBssInfo.
@@ -2098,7 +2098,7 @@ VOID rsnGeneratePmkidIndication(IN P_ADAPTER_T prAdapter)
 			    prAisSpecificBssInfo->arPmkidCandicate[i].u4PreAuthFlags;
 			DBGLOG(RSN, TRACE,
 			       (MACSTR " %d\n",
-				MAC2STR(prPmkidEvent->arCandidateList[count].arBSSID),
+				MAC2STR(prPmkidEvent->arCandidateList[count].arBSSID),(int)
 				prPmkidEvent->arCandidateList[count].u4Flags));
 			count++;
 		}
@@ -2107,7 +2107,7 @@ VOID rsnGeneratePmkidIndication(IN P_ADAPTER_T prAdapter)
 	/* PMKID Candidate List */
 	prPmkidEvent->u4Version = 1;
 	prPmkidEvent->u4NumCandidates = count;
-	DBGLOG(RSN, TRACE, ("rsnGeneratePmkidIndication #%d\n", prPmkidEvent->u4NumCandidates));
+	DBGLOG(RSN, TRACE, ("rsnGeneratePmkidIndication #%d\n", (int)prPmkidEvent->u4NumCandidates));
 	u4LenOfUsedBuffer = sizeof(ENUM_STATUS_TYPE_T) + (2 * sizeof(UINT_32)) +
 	    (count * sizeof(PARAM_PMKID_CANDIDATE_T));
 	/* dumpMemory8((PUINT_8)prAdapter->aucIndicationEventBuffer, u4LenOfUsedBuffer); */

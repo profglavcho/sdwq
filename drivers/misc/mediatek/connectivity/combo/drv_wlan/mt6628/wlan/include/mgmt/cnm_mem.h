@@ -790,7 +790,7 @@ struct _STA_RECORD_T {
     /*------------------------------------------------------------------------------------------*/
 
 	UINT_8 ucFreeQuota;	/* Per Sta flow controal. Valid when fgIsInPS is TRUE. Chnage it for per Queue flow control  */
-	/* UINT_8                  aucFreeQuotaPerQueue[NUM_OF_PER_STA_TX_QUEUES]; /* used in future */ */
+	/* UINT_8                  aucFreeQuotaPerQueue[NUM_OF_PER_STA_TX_QUEUES];  used in future  */
 	UINT_8 ucFreeQuotaForDelivery;
 	UINT_8 ucFreeQuotaForNonDelivery;
 #if CFG_ENABLE_PKT_LIFETIME_PROFILE && CFG_ENABLE_PER_STA_STATISTICS

@@ -1615,7 +1615,7 @@ int wlanHardStartXmit(struct sk_buff *prSkb, struct net_device *prDev)
 	}
 
 	DBGLOG(TX, EVENT,
-	       ("\n+++++ pending frame %d len = %d +++++\n", prGlueInfo->i4TxPendingFrameNum,
+	       ("\n+++++ pending frame %d len = %d +++++\n", (int)prGlueInfo->i4TxPendingFrameNum,
 		prSkb->len));
 	prGlueInfo->rNetDevStats.tx_bytes += prSkb->len;
 	prGlueInfo->rNetDevStats.tx_packets++;

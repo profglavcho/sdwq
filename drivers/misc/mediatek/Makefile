@@ -45,8 +45,8 @@ obj-$(CONFIG_MTK_ETM)   += etm/
 obj-y	+= mach/
 obj-y	+= kernel/
 obj-y	+= aee/
-obj-$(CONFIG_MTK_EMI_MPU)	+= emi_mpu/
-obj-$(CONFIG_MTK_EMI_BWL)	+= emi_bwl/
+#obj-$(CONFIG_MTK_EMI_MPU)	+= emi_mpu/
+#obj-$(CONFIG_MTK_EMI_BWL)	+= emi_bwl/
 
 obj-$(CONFIG_MTK_FMRADIO)	+= fmradio/
 obj-$(CONFIG_MTK_GPS)	    += gps/
@@ -57,7 +57,7 @@ obj-y	+= mtprof/
 obj-y	+= sched/
 obj-$(CONFIG_MTK_CMDQ) += cmdq/
 obj-y	+= mmp/
-obj-y	+= dispsys/
+#obj-y	+= dispsys/
 obj-$(CONFIG_MTK_VIDEOX) += videox/
 
 obj-y	+= auxadc/
